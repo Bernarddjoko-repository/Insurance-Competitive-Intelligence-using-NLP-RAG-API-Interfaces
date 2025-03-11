@@ -1,3 +1,6 @@
+![istockphoto-2194844746-612x612](https://github.com/user-attachments/assets/c05aeb88-c2f2-4de5-a430-b57e16b57da6)
+
+
 ## 📌 Insurance Competitive Intelligence AI
 ### Introduction
 Insurance companies frequently make strategic decisions based on their competitors' actions<txt>. This project leverages AI-powered document retrieval and natural language processing (NLP) to analyze insurance companies' financial reports<txt>. The goal is to provide competitive intelligence insights, helping insurers understand market trends, financial strategies, and risk factors of their competitors<txt>.
