@@ -27,35 +27,35 @@ Insurance firms require competitive intelligence to:<txt>
 However, extracting meaningful insights from large, unstructured financial documents is challenging<txt>. Traditional methods rely on manual analysis, which is slow and inefficient<txt>. This project aims to automate competitive intelligence analysis using AI-powered document retrieval and NLP<txt>.
 
 ### Step-by-Step Approach
-1️⃣ Data Processing & Embedding
+1️⃣ Data Processing & Embedding<txt>
 Extract text from 10-K filings<txt>.
 Segment reports into smaller chunks<txt>.
 Generate sentence embeddings using SentenceTransformer<txt>.
-2️⃣ Building FAISS Search Index
+2️⃣ Building FAISS Search Index<txt>
 Convert text embeddings into a searchable FAISS index<txt>.
 Store metadata (company name, section, chunk text)<txt>.
-3️⃣ AI-Powered Query Answering
+3️⃣ AI-Powered Query Answering<txt>
 User enters a question about competitors<txt>.
 FAISS retrieves relevant document chunks<txt>.
 Chunks are passed to Cohere API for AI-generated responses<txt>.
-4️⃣ Frontend Deployment
+4️⃣ Frontend Deployment<txt>
 Streamlit provides an interactive UI<txt>.
 Users can input queries and receive AI-generated financial insights<txt>.
 
 ### Challenges & Solutions
-🔹 Challenge 1: Handling Large 10-K Reports
+🔹 Challenge 1: Handling Large 10-K Reports<txt>
 Problem: SEC filings are hundreds of pages long, making retrieval difficult<txt>.
 Solution: We split documents into smaller chunks and indexed them using FAISS for efficient retrieval<txt>.
 
-🔹 Challenge 2: Improving Query Relevance
+🔹 Challenge 2: Improving Query Relevance<txt>
 Problem: Queries sometimes retrieved irrelevant document chunks<txt>.
 Solution: We optimized embeddings and fine-tuned retrieval parameters in FAISS<txt>.
 
-🔹 Challenge 3: Streamlit Not Recognizing Environment Variables
+🔹 Challenge 3: Streamlit Not Recognizing Environment Variables<txt>
 Problem: The API key wasn’t detected in Streamlit runtime<txt>.
 Solution: We loaded environment variables via .streamlit/config.toml<txt>.
 
-🔹 Challenge 4: Short AI Responses
+🔹 Challenge 4: Short AI Responses<txt>
 Problem: AI-generated responses were too brief<txt>.
 Solution: Increased context window and response length in Cohere API settings<txt>.
 
@@ -72,40 +72,40 @@ Solution: Increased context window and response length in Cohere API settings<tx
 🔹 Improve AI-generated summaries with more structured insights<txt>.
 
 ### Installation & How to Run
-🔹 1. Clone the Repository
-bash
-Copy
-Edit
-git clone https://github.com/your-github-username/insurance-competitive-intelligence-ai.git
-cd insurance-competitive-intelligence-ai
-🔹 2. Create a Virtual Environment & Install Dependencies
-bash
-Copy
-Edit
-python -m venv env
-source env/bin/activate  # For MacOS/Linux
-env\Scripts\activate  # For Windows
-pip install -r requirements.txt
-🔹 3. Set Up API Keys
+🔹 1. Clone the Repository<txt>
+bash<txt>
+Copy<txt>
+Edit<txt>
+git clone https://github.com/your-github-username/insurance-competitive-intelligence-ai.git<txt>
+cd insurance-competitive-intelligence-ai<txt>
+🔹 2. Create a Virtual Environment & Install Dependencies<txt>
+bash<txt>
+Copy<txt>
+Edit<txt>
+python -m venv env<txt>
+source env/bin/activate  # For MacOS/Linux<txt>
+env\Scripts\activate  # For Windows<txt>
+pip install -r requirements.txt<txt>
+🔹 3. Set Up API Keys<txt>
 Create a .env file and add your Cohere API key:<txt>
 
-ini
-Copy
-Edit
-COHERE_API_KEY=your-api-key-here
+ini<txt>
+Copy<txt>
+Edit<txt>
+COHERE_API_KEY=your-api-key-here<txt>
 For Streamlit, configure:<txt>
 
-bash
-Copy
-Edit
-mkdir ~/.streamlit
-echo "[server]" > ~/.streamlit/config.toml
-echo "COHERE_API_KEY='your-api-key-here'" >> ~/.streamlit/config.toml
-🔹 4. Run the Application
-bash
-Copy
-Edit
-streamlit run App.py
+bash<txt>
+Copy<txt>
+Edit<txt>
+mkdir ~/.streamlit<txt>
+echo "[server]" > ~/.streamlit/config.toml<txt>
+echo "COHERE_API_KEY='your-api-key-here'" >> ~/.streamlit/config.toml<txt>
+🔹 4. Run the Application<txt>
+bash<txt>
+Copy<txt>
+Edit<txt>
+streamlit run App.py<txt>
 Go to http://localhost:8501 in your browser and start querying financial insights<txt>!
 
 ### Key Takeaways
