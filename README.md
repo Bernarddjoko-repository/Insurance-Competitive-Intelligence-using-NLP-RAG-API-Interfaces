@@ -19,10 +19,10 @@ These reports are retrieved from the SEC EDGAR database and contain financial pe
 The data is processed using FAISS (Facebook AI Similarity Search) for efficient retrieval and embedding-based document search<txt>.
 
 ### Business Problem
-Insurance firms require competitive intelligence to:<txt>
-✔️ Identify strategic initiatives of competitors<txt>
-✔️ Compare financial performance across companies<txt>
-✔️ Analyze market risks & trends<txt>
+Insurance firms require competitive intelligence to: <txt>
+✔️ Identify strategic initiatives of competitors <txt>
+✔️ Compare financial performance across companies <txt>
+✔️ Analyze market risks & trends <txt>
 
 However, extracting meaningful insights from large, unstructured financial documents is challenging<txt>. Traditional methods rely on manual analysis, which is slow and inefficient<txt>. This project aims to automate competitive intelligence analysis using AI-powered document retrieval and NLP<txt>.
 
