@@ -1,112 +1,83 @@
 ![istockphoto-2194844746-612x612](https://github.com/user-attachments/assets/c05aeb88-c2f2-4de5-a430-b57e16b57da6)
 
 
-## 📌 Insurance Competitive Intelligence AI
-### Introduction
-Insurance companies frequently make strategic decisions based on their competitors' actions<txt>. This project leverages AI-powered document retrieval and natural language processing (NLP) to analyze insurance companies' financial reports<txt>. The goal is to provide competitive intelligence insights, helping insurers understand market trends, financial strategies, and risk factors of their competitors<txt>.
+# 📌 Insurance Competitive Intelligence AI<br>
 
-Our Insurance Competitive Intelligence AI allows users to input queries and retrieve AI-generated insights based on pre-processed 10-K financial statements of major insurance firms<txt>.
+## 🧠 Introduction<br>
+Insurance companies frequently make strategic decisions based on their competitors' actions.<br>
+This project leverages AI-powered document retrieval and NLP to analyze insurance financial reports.<br>
+The goal is to provide competitive insights to support data-driven decisions in underwriting, strategy, and investment.<br>
 
-### Dataset Overview
-The dataset consists of publicly available 10-K financial reports from major insurance companies such as:<txt>
+## 📂 Dataset Overview<br>
+We used publicly available 10-K financial reports from:<br>
+- Allstate (ALL)<br>
+- Travelers (TRV)<br>
+- Chubb (CB)<br>
+- Progressive (PGR)<br>
 
-Allstate (ALL)<txt>
-Progressive (PGR)<txt>
-Travelers (TRV)<txt>
-Chubb (CB)<txt>
-These reports are retrieved from the SEC EDGAR database and contain financial performance, risk factors, and business strategies<txt>.
+Reports were sourced from the SEC EDGAR database.<br>
+Each document was chunked and embedded using SentenceTransformer and indexed via FAISS.<br>
 
-The data is processed using FAISS (Facebook AI Similarity Search) for efficient retrieval and embedding-based document search<txt>.
+## 🧩 Business Problem<br>
+Insurers need visibility into how their peers manage risk, execute strategy, and respond to market trends.<br>
+Manually analyzing lengthy 10-K filings is time-consuming and often inefficient.<br>
+This tool enables AI-assisted Q&A to extract intelligence directly from these filings.<br>
 
-### Business Problem
-Insurance firms require competitive intelligence to: <txt>
-✔️ Identify strategic initiatives of competitors <txt>
-✔️ Compare financial performance across companies <txt>
-✔️ Analyze market risks & trends <txt>
+## 🧭 Step-by-Step Approach<br>
 
-However, extracting meaningful insights from large, unstructured financial documents is challenging<txt>. Traditional methods rely on manual analysis, which is slow and inefficient<txt>. This project aims to automate competitive intelligence analysis using AI-powered document retrieval and NLP<txt>.
+### ✅ Step 1: Preprocessing<br>
+- Chunked each 10-K report into manageable text segments<br>
+- Generated vector embeddings using `all-MiniLM-L6-v2`<br>
 
-### Step-by-Step Approach
-1️⃣ Data Processing & Embedding<txt>
-Extract text from 10-K filings<txt>.
-Segment reports into smaller chunks<txt>.
-Generate sentence embeddings using SentenceTransformer<txt>.
-2️⃣ Building FAISS Search Index<txt>
-Convert text embeddings into a searchable FAISS index<txt>.
-Store metadata (company name, section, chunk text)<txt>.
-3️⃣ AI-Powered Query Answering<txt>
-User enters a question about competitors<txt>.
-FAISS retrieves relevant document chunks<txt>.
-Chunks are passed to Cohere API for AI-generated responses<txt>.
-4️⃣ Frontend Deployment<txt>
-Streamlit provides an interactive UI<txt>.
-Users can input queries and receive AI-generated financial insights<txt>.
+### ✅ Step 2: FAISS Index Creation<br>
+- Indexed embeddings in FAISS for fast semantic search<br>
+- Stored metadata (company, section, chunk)<br>
 
-### Challenges & Solutions
-🔹 Challenge 1: Handling Large 10-K Reports<txt>
-Problem: SEC filings are hundreds of pages long, making retrieval difficult<txt>.
-Solution: We split documents into smaller chunks and indexed them using FAISS for efficient retrieval<txt>.
+### ✅ Step 3: Query Engine with Cohere<br>
+- User enters question via Streamlit UI<br>
+- FAISS retrieves top-matching chunks<br>
+- Cohere API generates contextualized answers<br>
 
-🔹 Challenge 2: Improving Query Relevance<txt>
-Problem: Queries sometimes retrieved irrelevant document chunks<txt>.
-Solution: We optimized embeddings and fine-tuned retrieval parameters in FAISS<txt>.
+### ✅ Step 4: Frontend with Streamlit<br>
+- Clean UI for user input and viewing results<br>
+- Option to expand context and download answers<br>
 
-🔹 Challenge 3: Streamlit Not Recognizing Environment Variables<txt>
-Problem: The API key wasn’t detected in Streamlit runtime<txt>.
-Solution: We loaded environment variables via .streamlit/config.toml<txt>.
+## 🛠️ Challenges & Solutions<br>
 
-🔹 Challenge 4: Short AI Responses<txt>
-Problem: AI-generated responses were too brief<txt>.
-Solution: Increased context window and response length in Cohere API settings<txt>.
+### 🔹 Challenge 1: Large Document Parsing<br>
+**Problem:** SEC files are hundreds of pages long<br>
+**Solution:** Document chunking and memory-efficient processing pipeline<br>
 
-### Results
-✅ Successfully built an interactive AI-powered system for analyzing insurance financials<txt>.
-✅ Accurate retrieval of financial insights from 10-K filings<txt>.
-✅ Streamlit-based UI for easy query input and AI responses<txt>.
-✅ Competitive intelligence automation, reducing manual report analysis time<txt>.
+### 🔹 Challenge 2: Context Relevance<br>
+**Problem:** Poor matching for certain query types<br>
+**Solution:** Tuned chunk size and FAISS parameters<br>
 
-### Future Work
-🔹 Expand dataset to more insurance companies<txt>.
-🔹 Fine-tune retrieval models for better query relevance<txt>.
-🔹 Implement multi-document comparison for deeper competitor analysis<txt>.
-🔹 Improve AI-generated summaries with more structured insights<txt>.
+### 🔹 Challenge 3: API Environment Issues in Streamlit<br>
+**Problem:** API keys not detected in some environments<br>
+**Solution:** Used `.streamlit/config.toml` and `.env` loading fallback<br>
 
-### Installation & How to Run
-🔹 1. Clone the Repository<txt>
-bash<txt>
-Copy<txt>
-Edit<txt>
-git clone https://github.com/your-github-username/insurance-competitive-intelligence-ai.git<txt>
-cd insurance-competitive-intelligence-ai<txt>
-🔹 2. Create a Virtual Environment & Install Dependencies<txt>
-bash<txt>
-Copy<txt>
-Edit<txt>
-python -m venv env<txt>
-source env/bin/activate  # For MacOS/Linux<txt>
-env\Scripts\activate  # For Windows<txt>
-pip install -r requirements.txt<txt>
-🔹 3. Set Up API Keys<txt>
-Create a .env file and add your Cohere API key:<txt>
+### 🔹 Challenge 4: Concise Answers<br>
+**Problem:** Cohere initially returned short responses<br>
+**Solution:** Increased prompt context and token length limit<br>
 
-ini<txt>
-Copy<txt>
-Edit<txt>
-COHERE_API_KEY=your-api-key-here<txt>
-For Streamlit, configure:<txt>
+## 📊 Results<br>
+- Deployed fully working prototype on Streamlit<br>
+- Answered questions like "Compare Allstate’s and Traveler’s 2024 strategies"<br>
+- Reduced research effort for competitive analysts<br>
 
-bash<txt>
-Copy<txt>
-Edit<txt>
-mkdir ~/.streamlit<txt>
-echo "[server]" > ~/.streamlit/config.toml<txt>
-echo "COHERE_API_KEY='your-api-key-here'" >> ~/.streamlit/config.toml<txt>
-🔹 4. Run the Application<txt>
-bash<txt>
-Copy<txt>
-Edit<txt>
-streamlit run App.py<txt>
-Go to http://localhost:8501 in your browser and start querying financial insights<txt>!
+## 🔭 Future Work<br>
+- Multi-document comparison view<br>
+- Add filters (year, section, carrier)<br>
+- Expand to include quarterly (10-Q) and earnings call data<br>
+
+## 🛠️ Installation & How to Run<br>
+
+```bash
+git clone https://github.com/your-username/insurance-competitive-intelligence-ai.git<br>
+cd insurance-competitive-intelligence-ai<br>
+python -m venv env && source env/bin/activate  # or .\env\Scripts\activate on Windows<br>
+pip install -r requirements.txt<br>
+
 
 ### Key Takeaways
 ✔️ AI-powered competitive intelligence saves manual research time<txt>.
